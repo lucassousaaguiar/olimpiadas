@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N;
+    scanf("%d", &N);
+
+    // Criação de uma pilha usando um array
+    int *pilha = (int *)malloc(N * sizeof(int));
+    int topo = -1;
+
+    for (int i = 0; i < N; i++) {
+        int numero;
+        scanf("%d", &numero);
+
+        if (numero != 0) {
+            // Empilha o número
+            pilha[++topo] = numero;
+        } else if (topo >= 0) {
+            // Desempilha o último número, se houver
+            topo--;
+        }
+    }
+
+    // Cálculo da soma dos números na pilha
+    int soma = 0;
+    for (int i = 0; i <= topo; i++) {
+        soma += pilha[i];
+    }
+
+    // Impressão do resultado
+    printf("%d\n", soma);
+
+    // Liberação da memória alocada
+    free(pilha);
+
+    return 0;
+}
